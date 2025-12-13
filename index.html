@@ -183,11 +183,10 @@
           </div>
         </div>
 
-        <form action="https://formsubmit.co/shifymitch@gmail.com" method="POST" class="p-8 space-y-6">
+        <form id="booking-form" action="https://formsubmit.co/shifymitch@gmail.com" method="POST" class="p-8 space-y-6">
           <input type="hidden" name="_subject" value="New VIP Transportation Booking Request" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://shiftymitch.github.io/viptransportation/thank-you.html" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <!-- Contact Details -->
           <div class="space-y-4">
@@ -345,6 +344,32 @@
         menuToggle.addEventListener('click', () => {
           mobileMenu.classList.toggle('hidden');
         });
+
+        // FormSubmit (AJAX) redirect fallback
+        const bookingForm = document.getElementById('booking-form');
+        if (bookingForm) {
+          bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(bookingForm);
+
+            try {
+              const res = await fetch('https://formsubmit.co/ajax/shifymitch@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                  'Accept': 'application/json'
+                }
+              });
+
+              if (!res.ok) throw new Error('Form submission failed');
+
+              window.location.href = 'https://shiftymitch.github.io/viptransportation/thank-you.html';
+            } catch (err) {
+              alert('Sorry — something went wrong sending your request. Please try again or contact us directly.');
+            }
+          });
+        }
       });
 
       // Render Fleet Function
