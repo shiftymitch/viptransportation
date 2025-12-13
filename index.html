@@ -107,7 +107,7 @@
           <span class="text-gold-500 uppercase tracking-[0.5em] text-sm md:text-base font-medium">SLC & Park City</span>
         </div>
         <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">
-          Elevate Your <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Alpine Journey</span>
+          Elevate Your <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Journey</span>
         </h1>
         <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
           Salt Lake City's premier chauffeur service. Serving SLC International, Park City resorts, and the entire Wasatch Front with absolute comfort.
@@ -178,7 +178,12 @@
           <p class="text-gray-400 text-sm">Fill in the details below for a bespoke quote.</p>
         </div>
 
-        <form onsubmit="handleBookingSubmit(event)" class="p-8 space-y-6">
+        <form action="https://formsubmit.co/shifymitch@gmail.com" method="POST" class="p-8 space-y-6">
+          <input type="hidden" name="_subject" value="New VIP Transportation Booking Request" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="thank-you.html" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <!-- Contact Details -->
           <div class="space-y-4">
             <h3 class="text-white font-medium border-b border-zinc-800 pb-2 mb-4">Contact Details</h3>
@@ -388,14 +393,6 @@
         scrollToSection('book');
       }
 
-      // Booking Handler
-      function handleBookingSubmit(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
-        
-        alert(`Booking Request Sent!\n\nVehicle: ${data.vehicleType}\nPickup: ${data.pickupAddress}\nDropoff: ${data.dropoffAddress}\n\nWe will contact you shortly to confirm availability for your Salt Lake City trip.`);
-      }
     </script>
   </body>
 </html>
