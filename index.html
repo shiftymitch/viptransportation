@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIP Transportation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: {
+                400: '#FACC15',
+                500: '#EAB308',
+                600: '#CA8A04',
+              },
+              dark: {
+                900: '#0f172a',
+                800: '#1e293b',
+              }
+            },
+            fontFamily: {
+              serif: ['Playfair Display', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #EAB308;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-gray-100 font-sans antialiased selection:bg-gold-500 selection:text-black">
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6">
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 cursor-pointer" onclick="scrollToSection('hero')">
+          <div class="w-10 h-10 bg-gold-500 flex items-center justify-center rounded-sm">
+            <i data-lucide="car" class="text-black w-6 h-6"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-gold-500 text-[10px] tracking-[0.3em] font-sans">VIP TRANSPORTATION</span>
+          </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <button onclick="scrollToSection('fleet')" class="text-sm font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest">Fleet</button>
+          <button onclick="scrollToSection('services')" class="text-sm font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest">Services</button>
+          <button onclick="scrollToSection('book')" class="text-sm font-medium text-gray-300 hover:text-white transition-colors uppercase tracking-widest">Contact</button>
+          <button onclick="scrollToSection('book')" class="bg-transparent border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black px-6 py-2 rounded-sm transition-all text-xs font-bold uppercase tracking-widest">
+            Book Now
+          </button>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-white">
+            <i data-lucide="menu" class="w-7 h-7"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-black border-b border-zinc-800 py-8 px-6 flex flex-col gap-6">
+        <button onclick="scrollToSection('fleet')" class="text-lg font-serif text-white text-left">Our Fleet</button>
+        <button onclick="scrollToSection('services')" class="text-lg font-serif text-white text-left">Services</button>
+        <button onclick="scrollToSection('book')" class="text-lg font-serif text-white text-left">Contact Us</button>
+        <button onclick="scrollToSection('book')" class="bg-gold-500 text-black py-3 text-center font-bold uppercase tracking-widest">
+          Reserve Now
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="https://www.westcoastexoticcars.com/imagetag/910/36/l/Used-2019-Cadillac-Escalade-ESV-Luxury-1632863245.jpg?q=80&w=2070&auto=format&fit=crop" alt="Luxury Car Interior" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-zinc-900"></div>
+      </div>
+
+      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+        <div class="inline-block mb-6 border-b-2 border-gold-500 pb-2">
+          <span class="text-gold-500 uppercase tracking-[0.5em] text-sm md:text-base font-medium">SLC & Park City</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">
+          Elevate Your <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Alpine Journey</span>
+        </h1>
+        <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+          Salt Lake City's premier chauffeur service. Serving SLC International, Park City resorts, and the entire Wasatch Front with absolute comfort.
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center">
+          <button onclick="scrollToSection('book')" class="bg-gold-500 hover:bg-gold-600 text-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all transform hover:scale-105">
+            Book Your Ride
+          </button>
+          <button onclick="scrollToSection('fleet')" class="bg-transparent border border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all">
+            View Fleet
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-zinc-950 px-6 border-b border-zinc-900">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Service 1 -->
+        <div class="flex flex-col items-center text-center p-6 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-gold-500/50 transition-colors">
+          <i data-lucide="shield-check" class="text-gold-500 mb-4 w-10 h-10"></i>
+          <h3 class="text-white font-serif text-xl mb-2">Secure & Private</h3>
+          <p class="text-gray-400 text-sm">Discretion guaranteed for high-profile clients and Sundance attendees.</p>
+        </div>
+        <!-- Service 2 -->
+        <div class="flex flex-col items-center text-center p-6 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-gold-500/50 transition-colors">
+          <i data-lucide="clock" class="text-gold-500 mb-4 w-10 h-10"></i>
+          <h3 class="text-white font-serif text-xl mb-2">Always On Time</h3>
+          <p class="text-gray-400 text-sm">Real-time flight tracking at SLC International Airport.</p>
+        </div>
+        <!-- Service 3 -->
+        <div class="flex flex-col items-center text-center p-6 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-gold-500/50 transition-colors">
+          <i data-lucide="star" class="text-gold-500 mb-4 w-10 h-10"></i>
+          <h3 class="text-white font-serif text-xl mb-2">First Class Service</h3>
+          <p class="text-gray-400 text-sm">Professional chauffeurs with extensive local knowledge.</p>
+        </div>
+        <!-- Service 4 -->
+        <div class="flex flex-col items-center text-center p-6 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-gold-500/50 transition-colors">
+          <i data-lucide="mountain-snow" class="text-gold-500 mb-4 w-10 h-10"></i>
+          <h3 class="text-white font-serif text-xl mb-2">Mountain Ready</h3>
+          <p class="text-gray-400 text-sm">4WD fleet equipped for canyon roads and winter conditions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet" class="py-20 px-4 bg-zinc-900">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-serif text-center text-white mb-4">Our Elite Fleet</h2>
+        <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          Meticulously maintained and chauffeur-driven. Winter-ready vehicles available for mountain destinations.
+        </p>
+        <div id="fleet-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Fleet items generated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="py-20 px-4 bg-zinc-950 relative overflow-hidden">
+      <!-- Decorative background -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500 opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-900 opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-4xl mx-auto bg-zinc-900/80 backdrop-blur-md border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden">
+        <div class="bg-gradient-to-r from-zinc-900 to-black p-8 border-b border-zinc-800">
+          <h2 className="text-3xl font-serif text-white mb-2">Reserve Your Journey</h2>
+          <p class="text-gray-400 text-sm">Fill in the details below for a bespoke quote.</p>
+        </div>
+
+        <form onsubmit="handleBookingSubmit(event)" class="p-8 space-y-6">
+          <!-- Contact Details -->
+          <div class="space-y-4">
+            <h3 class="text-white font-medium border-b border-zinc-800 pb-2 mb-4">Contact Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Full Name</label>
+                <input required type="text" name="name" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="John Doe">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Email Address</label>
+                <input required type="email" name="email" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="john@example.com">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Phone Number</label>
+                <input required type="tel" name="phone" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="+1 (555) 000-0000">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500 flex items-center gap-1">Vehicle Preference</label>
+                <select id="vehicle-select" required name="vehicleType" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors">
+                  <option value="" disabled selected>Select a vehicle...</option>
+                  <option value="Luxury Sedan">Luxury Sedan</option>
+                  <option value="Premium SUV">Premium SUV</option>
+                  <option value="Stretch Limousine">Stretch Limousine</option>
+                  <option value="Executive Sprinter">Executive Sprinter</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trip Details -->
+          <div class="space-y-4 pt-4">
+            <h3 class="text-white font-medium border-b border-zinc-800 pb-2 mb-4">Trip Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Pickup Date</label>
+                <input required type="date" name="pickupDate" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors [color-scheme:dark]">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Pickup Time</label>
+                <input required type="time" name="pickupTime" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors [color-scheme:dark]">
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs uppercase tracking-wider text-gray-500">Pickup Location</label>
+              <input required type="text" name="pickupAddress" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. SLC International Airport">
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs uppercase tracking-wider text-gray-500">Drop-off Location</label>
+              <input required type="text" name="dropoffAddress" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. Stein Eriksen Lodge, Park City">
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs uppercase tracking-wider text-gray-500">Special Requests / Itinerary</label>
+              <textarea name="specialRequests" rows="4" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors resize-none" placeholder="Please specify ski gear, child seats, beverages, or stops..."></textarea>
+            </div>
+          </div>
+
+          <div class="pt-6">
+            <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-black font-bold uppercase tracking-widest py-4 px-8 rounded transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-gold-500/20">
+              Request Booking
+            </button>
+            <p class="text-center text-zinc-500 text-xs mt-4">
+              By submitting this form, you agree to our Terms of Service. Payment is collected upon confirmation.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 px-6 border-t border-zinc-900">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <h4 class="text-xl font-serif text-white mb-2">VIP TRANSPORTATION</h4>
+          <p class="text-gray-500 text-sm">© <span id="year"></span> VIP Transportation. Local & Family Owned.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main Logic -->
+    <script>
+      // Fleet Data
+      const fleetData = [
+        {
+          id: '1',
+          type: 'Luxury Sedan',
+          name: 'Mercedes-Benz S-Class',
+          capacity: 3,
+          luggage: 3,
+          pricePerHour: 85,
+          image: 'https://imageio.forbes.com/specials-images/imageserve/5f9c250cf161e6c9a9cb7a5a/Black-S-Class-sedans-are-popular-with-syndicates-/0x0.png?format=png&width=480',
+          description: 'The ultimate standard for luxury city travel and airport transfers.'
+        },
+        {
+          id: '2',
+          type: 'Premium SUV',
+          name: 'Cadillac Escalade ESV',
+          capacity: 6,
+          luggage: 6,
+          pricePerHour: 125,
+          image: 'https://di-sitebuilder-assets.s3.us-east-1.amazonaws.com/Cadillac/MLP/2025/Escalade/trims/Luxury.png',
+          description: '4WD equipped. Perfect for Park City ski trips, families, and canyon drives.'
+        },
+        {
+          id: '3',
+          type: 'Stretch Limousine',
+          name: 'Lincoln Continental Stretch',
+          capacity: 8,
+          luggage: 4,
+          pricePerHour: 150,
+          image: 'https://globalblacklimo.com/wp-content/uploads/2017/02/car-61-e1517712401727.jpg',
+          description: 'Classic elegance for weddings, proms, and downtown SLC nights out.'
+        },
+        {
+          id: '4',
+          type: 'Executive Sprinter',
+          name: 'Mercedes-Benz Sprinter 4x4',
+          capacity: 13,
+          luggage: 13,
+          pricePerHour: 195,
+          image: 'https://vehicle-images.dealerinspire.com/49ba-11002309/thumbnails/large/W1Y4NCVY1TT604187/12ef19c6d9a04d549d913ba39cc22fec.jpg',
+          description: 'Executive shuttle with high roof. Ideal for corporate groups and ski teams.'
+        },
+      ];
+
+      // Initialize App
+      document.addEventListener('DOMContentLoaded', () => {
+        // Initialize Icons
+        lucide.createIcons();
+        
+        // Render Fleet
+        renderFleet();
+        
+        // Set Footer Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+          const nav = document.getElementById('navbar');
+          if (window.scrollY > 20) {
+            nav.classList.add('bg-black/95', 'backdrop-blur-sm', 'border-b', 'border-zinc-800', 'py-4');
+            nav.classList.remove('bg-transparent', 'py-6');
+          } else {
+            nav.classList.remove('bg-black/95', 'backdrop-blur-sm', 'border-b', 'border-zinc-800', 'py-4');
+            nav.classList.add('bg-transparent', 'py-6');
+          }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      });
+
+      // Render Fleet Function
+      function renderFleet() {
+        const container = document.getElementById('fleet-container');
+        fleetData.forEach(vehicle => {
+          const card = document.createElement('div');
+          card.className = 'bg-black border border-zinc-800 rounded-lg overflow-hidden hover:border-gold-500 transition-colors duration-300 group shadow-lg';
+          card.innerHTML = `
+            <div class="h-48 overflow-hidden">
+              <img src="${vehicle.image}" alt="${vehicle.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-white mb-1">${vehicle.name}</h3>
+              <p class="text-gold-500 text-sm mb-4 font-medium uppercase tracking-wider">${vehicle.type}</p>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-2">${vehicle.description}</p>
+              
+              <div class="flex items-center justify-between text-gray-300 text-sm mb-6">
+                <div class="flex items-center gap-1">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                  <span>${vehicle.capacity}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                   <i data-lucide="briefcase" class="w-4 h-4"></i>
+                  <span>${vehicle.luggage}</span>
+                </div>
+                <div class="text-gold-500 font-bold">$${vehicle.pricePerHour}/hr</div>
+              </div>
+
+              <button onclick="selectVehicle('${vehicle.type}')" class="w-full bg-zinc-800 hover:bg-gold-500 hover:text-black text-white py-3 px-4 rounded transition-colors duration-300 font-medium uppercase text-xs tracking-widest">
+                Select Vehicle
+              </button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+        // Re-run icon creation for new elements
+        lucide.createIcons();
+      }
+
+      // Scroll Helper
+      function scrollToSection(id) {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Vehicle Selection
+      function selectVehicle(type) {
+        const select = document.getElementById('vehicle-select');
+        select.value = type;
+        scrollToSection('book');
+      }
+
+      // Booking Handler
+      function handleBookingSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+        
+        alert(`Booking Request Sent!\n\nVehicle: ${data.vehicleType}\nPickup: ${data.pickupAddress}\nDropoff: ${data.dropoffAddress}\n\nWe will contact you shortly to confirm availability for your Salt Lake City trip.`);
+      }
+    </script>
+  </body>
+</html>
