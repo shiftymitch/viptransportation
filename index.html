@@ -98,7 +98,7 @@
     <!-- Hero Section -->
     <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-        <img src="https://www.westcoastexoticcars.com/imagetag/910/36/l/Used-2019-Cadillac-Escalade-ESV-Luxury-1632863245.jpg?q=80&w=2070&auto=format&fit=crop" alt="Luxury Car Interior" class="w-full h-full object-cover" />
+        <img src="./img/Interior-Header-Image.jpg" alt="Luxury Car Interior" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-zinc-900"></div>
       </div>
 
@@ -110,7 +110,7 @@
           Elevate Your <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Journey</span>
         </h1>
         <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
-          Salt Lake City's premier chauffeur service. Serving SLC International, Park City resorts, and the entire Wasatch Front with absolute comfort.
+          Premier chauffeur service. Serving Salt Lake City, Park City, and the entire Wasatch Front from Provo to Ogden with absolute comfort.
         </p>
         <div class="flex flex-col md:flex-row gap-4 justify-center">
           <button onclick="scrollToSection('book')" class="bg-gold-500 hover:bg-gold-600 text-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all transform hover:scale-105">
@@ -130,7 +130,7 @@
         <div class="flex flex-col items-center text-center p-6 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-gold-500/50 transition-colors">
           <i data-lucide="shield-check" class="text-gold-500 mb-4 w-10 h-10"></i>
           <h3 class="text-white font-serif text-xl mb-2">Secure & Private</h3>
-          <p class="text-gray-400 text-sm">Discretion guaranteed for high-profile clients and Sundance attendees.</p>
+          <p class="text-gray-400 text-sm">Discretion guaranteed for high-profile clients.</p>
         </div>
         <!-- Service 2 -->
         <div class="flex flex-col items-center text-center p-6 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-gold-500/50 transition-colors">
@@ -202,16 +202,20 @@
               </div>
               <div class="space-y-1">
                 <label class="text-xs uppercase tracking-wider text-gray-500">Phone Number</label>
-                <input required type="tel" name="phone" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="+1 (555) 000-0000">
+                <input required type="tel" name="phone" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="+1 (801) 000-0000">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Total Passengers</label>
+                <input required type="number" min="1" name="totalPassengers" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. 4">
               </div>
               <div class="space-y-1">
                 <label class="text-xs uppercase tracking-wider text-gray-500 flex items-center gap-1">Vehicle Preference</label>
                 <select id="vehicle-select" required name="vehicleType" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors">
                   <option value="" disabled selected>Select a vehicle...</option>
-                  <option value="Luxury Sedan">Luxury Sedan</option>
-                  <option value="Premium SUV">Premium SUV</option>
-                  <option value="Stretch Limousine">Stretch Limousine</option>
-                  <option value="Executive Sprinter">Executive Sprinter</option>
+                  <option value="Mercedes-Benz S-Class">Mercedes-Benz S-Class</option>
+                  <option value="GMC Yukon XL">GMC Yukon XL</option>
+                  <option value="Chevrolet Suburban">Chevrolet Suburban</option>
+                  <option value="Mercedes-Benz Sprinter">Mercedes-Benz Sprinter</option>
                 </select>
               </div>
             </div>
@@ -230,6 +234,16 @@
                 <input required type="time" name="pickupTime" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors [color-scheme:dark]">
               </div>
             </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Airline</label>
+                <input type="text" name="airline" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. Delta">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500">Flight Number</label>
+                <input type="text" name="flightNumber" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. DL1234">
+              </div>
+            </div>
 
             <div class="space-y-1">
               <label class="text-xs uppercase tracking-wider text-gray-500">Pickup Location</label>
@@ -242,8 +256,8 @@
             </div>
 
             <div class="space-y-1">
-              <label class="text-xs uppercase tracking-wider text-gray-500">Special Requests / Itinerary</label>
-              <textarea name="specialRequests" rows="4" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors resize-none" placeholder="Please specify any unique luggage types, stop requests, etc..."></textarea>
+              <label class="text-xs uppercase tracking-wider text-gray-500">More Details / Special Requests</label>
+              <textarea name="specialRequests" rows="4" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors resize-none" placeholder="Feel free to ask any additional questions. Please also specify any unique luggage types, stop requests, etc..."></textarea>
             </div>
           </div>
 
@@ -257,6 +271,34 @@
           </div>
         </form>
       </div>
+    </section>
+    
+    <!-- Real Fleet Photos -->
+    <section id="real-fleet" class="py-20 px-4 bg-zinc-900">
+        <div class="max-w-6xl mx-auto">
+          <div class="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden">
+            <div class="bg-gradient-to-r from-zinc-900 to-black p-8 border-b border-zinc-800">
+              <h3 class="text-2xl font-serif font-bold text-white">Our Real Fleet</h3>
+              <p class="text-gray-400 text-sm mt-2">A couple quick shots from Mario’s actual vehicles — local, family-run, and proud of it.</p>
+            </div>
+
+            <div class="p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <figure class="bg-black/40 border border-zinc-800 rounded-xl overflow-hidden">
+                  <div class="relative w-full aspect-[1170/823]">
+                    <img src="img/fleet1.jpg" alt="Mario's fleet vehicle photo 1" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  </div>
+                </figure>
+
+                <figure class="bg-black/40 border border-zinc-800 rounded-xl overflow-hidden">
+                  <div class="relative w-full aspect-[1170/823]">
+                    <img src="img/fleet2.jpg" alt="Mario's fleet vehicle photo 2" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -279,38 +321,34 @@
           name: 'Mercedes-Benz S-Class',
           capacity: 3,
           luggage: 3,
-          pricePerHour: 85,
-          image: 'https://imageio.forbes.com/specials-images/imageserve/5f9c250cf161e6c9a9cb7a5a/Black-S-Class-sedans-are-popular-with-syndicates-/0x0.png?format=png&width=480',
+          image: './img/mercedes-s-class.jpg',
           description: 'The ultimate standard for luxury city travel and airport transfers.'
         },
         {
           id: '2',
           type: 'Premium SUV',
-          name: 'Cadillac Escalade ESV',
-          capacity: 6,
-          luggage: 6,
-          pricePerHour: 125,
-          image: 'https://di-sitebuilder-assets.s3.us-east-1.amazonaws.com/Cadillac/MLP/2025/Escalade/trims/Luxury.png',
+          name: 'GMC Yukon XL',
+          capacity: 7,
+          luggage: 7,
+          image: './img/gmc-yukon-xl.jpeg',
           description: '4WD equipped. Perfect for Park City ski trips, families, and canyon drives.'
         },
         {
           id: '3',
-          type: 'Stretch Limousine',
-          name: 'Lincoln Continental Stretch',
-          capacity: 8,
-          luggage: 4,
-          pricePerHour: 150,
-          image: 'https://globalblacklimo.com/wp-content/uploads/2017/02/car-61-e1517712401727.jpg',
-          description: 'Classic elegance for weddings, proms, and downtown SLC nights out.'
+          type: 'Premium SUV',
+          name: 'Chevrolet Suburban',
+          capacity: 7,
+          luggage: 7,
+          image: './img/chevrolet-suburban.jpg',
+          description: '4WD equipped. Perfect for Park City ski trips, families, and canyon drives.'
         },
         {
           id: '4',
           type: 'Executive Sprinter',
-          name: 'Mercedes-Benz Sprinter 4x4',
-          capacity: 13,
-          luggage: 13,
-          pricePerHour: 195,
-          image: 'https://vehicle-images.dealerinspire.com/49ba-11002309/thumbnails/large/W1Y4NCVY1TT604187/12ef19c6d9a04d549d913ba39cc22fec.jpg',
+          name: 'Mercedes-Benz Sprinter',
+          capacity: '11-14',
+          luggage: '10-13',
+          image: './img/mercedes-sprinter.jpg',
           description: 'Executive shuttle with high roof. Ideal for corporate groups and ski teams.'
         },
       ];
@@ -377,13 +415,13 @@
         const container = document.getElementById('fleet-container');
         fleetData.forEach(vehicle => {
           const card = document.createElement('div');
-          card.className = 'bg-black border border-zinc-800 rounded-lg overflow-hidden hover:border-gold-500 transition-colors duration-300 group shadow-lg';
+          card.className = 'bg-black border border-zinc-800 rounded-lg overflow-hidden hover:border-gold-500 transition-colors duration-300 group shadow-lg flex flex-col';
           card.innerHTML = `
             <div class="h-48 overflow-hidden">
               <img src="${vehicle.image}" alt="${vehicle.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-1">${vehicle.name}</h3>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-xl font-semibold text-white mb-1 line-clamp-2 min-h-[3.5rem]">${vehicle.name}</h3>
               <p class="text-gold-500 text-sm mb-4 font-medium uppercase tracking-wider">${vehicle.type}</p>
               <p class="text-gray-400 text-sm mb-6 line-clamp-2">${vehicle.description}</p>
               
@@ -396,10 +434,9 @@
                    <i data-lucide="briefcase" class="w-4 h-4"></i>
                   <span>${vehicle.luggage}</span>
                 </div>
-                <div class="text-gold-500 font-bold">$${vehicle.pricePerHour}/hr</div>
               </div>
 
-              <button onclick="selectVehicle('${vehicle.type}')" class="w-full bg-zinc-800 hover:bg-gold-500 hover:text-black text-white py-3 px-4 rounded transition-colors duration-300 font-medium uppercase text-xs tracking-widest">
+              <button onclick="selectVehicle('${vehicle.name}')" class="mt-auto w-full bg-zinc-800 hover:bg-gold-500 hover:text-black text-white py-3 px-4 rounded transition-colors duration-300 font-medium uppercase text-xs tracking-widest">
                 Select Vehicle
               </button>
             </div>
