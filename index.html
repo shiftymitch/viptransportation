@@ -184,7 +184,7 @@
         </div>
 
         <form id="booking-form" action="https://formsubmit.co/shifymitch@gmail.com" method="POST" class="p-8 space-y-6">
-          <input type="hidden" name="_subject" value="New VIP Transportation Booking Request" />
+          <input type="hidden" id="email-subject" name="_subject" value="VIP Transportation Inquiry" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
@@ -390,6 +390,16 @@
             e.preventDefault();
 
             const formData = new FormData(bookingForm);
+
+            // --- Custom email subject with customer name ---
+            const nameField = bookingForm.querySelector('input[name="name"]');
+            const customerName = (nameField?.value || '').trim().replace(/\s+/g, ' ');
+            const subjectEl = document.getElementById('email-subject');
+            if (subjectEl && customerName) {
+              subjectEl.value = `VIP Transportation Inquiry — ${customerName}`;
+            }
+            formData.set('_subject', subjectEl?.value || 'VIP Transportation Inquiry');
+            // --- End custom subject ---
 
             try {
               const res = await fetch('https://formsubmit.co/ajax/mitchadvertiser@gmail.com', {
