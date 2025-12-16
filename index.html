@@ -49,6 +49,15 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #EAB308;
       }
+      /* Passenger input: turn red when invalid (over max / custom validity) only after input */
+      #passengers-input:invalid:not(:placeholder-shown) {
+        border-color: #ef4444;
+      }
+      #passengers-input:invalid:not(:placeholder-shown):focus {
+        border-color: #ef4444;
+        outline: none;
+        box-shadow: 0 0 0 1px #ef4444;
+      }
     </style>
   </head>
   <body class="bg-black text-gray-100 font-sans antialiased selection:bg-gold-500 selection:text-black">
@@ -177,7 +186,8 @@
           <h2 class="text-3xl font-serif font-bold text-gold-500 mb-2">Reserve Your Journey</h2>
           <p class="text-gray-400 text-sm">Fill in the details below for a bespoke quote.</p>
           <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:gap-6 gap-2 text-sm">
-            <div class="text-gray-300">Owner & Coordinator: <span class="text-white font-medium">Mario</span></div>
+            <div class="text-gray-300">Owner & Coordinator:</div>
+            <span class="text-white font-medium">Mario</span>
             <a href="tel:+18012442227" class="text-gray-300 hover:text-gold-500 transition-colors">801-244-2227</a>
             <a href="mailto:slcviptransportation@gmail.com" class="text-gray-300 hover:text-gold-500 transition-colors">slcviptransportation@gmail.com</a>
           </div>
@@ -206,7 +216,7 @@
               </div>
               <div class="space-y-1">
                 <label class="text-xs uppercase tracking-wider text-gray-500">Total Passengers</label>
-                <input required type="number" min="1" name="totalPassengers" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. 4">
+                <input required type="number" min="1" max="14" id="passengers-input" name="totalPassengers" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. 4">
               </div>
               <div class="space-y-1">
                 <label class="text-xs uppercase tracking-wider text-gray-500 flex items-center gap-1">Vehicle Preference</label>
@@ -217,6 +227,7 @@
                   <option value="Chevrolet Suburban">Chevrolet Suburban</option>
                   <option value="Mercedes-Benz Sprinter">Mercedes-Benz Sprinter</option>
                 </select>
+                <p id="passenger-hint" class="text-xs text-zinc-500 mt-2">Select a vehicle to see passenger limit.</p>
               </div>
             </div>
           </div>
@@ -383,6 +394,64 @@
           mobileMenu.classList.toggle('hidden');
         });
 
+        // Passenger validation based on selected vehicle
+        const vehicleSelect = document.getElementById('vehicle-select');
+        const passengersInput = document.getElementById('passengers-input');
+        const passengerHint = document.getElementById('passenger-hint');
+
+        const vehiclePassengerMax = {
+          'Mercedes-Benz S-Class': 3,
+          'GMC Yukon XL': 7,
+          'Chevrolet Suburban': 7,
+          'Mercedes-Benz Sprinter': 14,
+        };
+
+        function applyPassengerLimit() {
+          if (!vehicleSelect || !passengersInput) return;
+
+          const vehicle = vehicleSelect.value;
+          const max = vehiclePassengerMax[vehicle];
+
+          if (!vehicle || !max) {
+            passengersInput.max = '14';
+            passengersInput.setCustomValidity('');
+            if (passengerHint) passengerHint.textContent = 'Max passengers: 14. Select a vehicle to see vehicle-specific limit.';
+            return;
+          }
+
+          passengersInput.max = String(max);
+
+          const current = Number(passengersInput.value || 0);
+          if (current > max) {
+            passengersInput.value = String(max);
+          }
+
+          passengersInput.setCustomValidity('');
+          if (passengerHint) passengerHint.textContent = `Max passengers for ${vehicle}: ${max}.`;
+        }
+
+        function validatePassengers() {
+          if (!vehicleSelect || !passengersInput) return;
+
+          const vehicle = vehicleSelect.value;
+          const max = vehiclePassengerMax[vehicle];
+          const current = Number(passengersInput.value || 0);
+
+          if (vehicle && max && current > max) {
+            passengersInput.setCustomValidity(`This vehicle can carry up to ${max} passengers.`);
+          } else {
+            passengersInput.setCustomValidity('');
+          }
+        }
+
+        if (vehicleSelect) vehicleSelect.addEventListener('change', () => {
+          applyPassengerLimit();
+          validatePassengers();
+        });
+        if (passengersInput) passengersInput.addEventListener('input', validatePassengers);
+
+        applyPassengerLimit();
+
         // FormSubmit (AJAX) redirect fallback
         const bookingForm = document.getElementById('booking-form');
         if (bookingForm) {
@@ -431,18 +500,18 @@
               <img src="${vehicle.image}" alt="${vehicle.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-xl font-semibold text-white mb-1 line-clamp-2 min-h-[3.5rem]">${vehicle.name}</h3>
-              <p class="text-gold-500 text-sm mb-4 font-medium uppercase tracking-wider">${vehicle.type}</p>
+              <h3 class="text-3xl md:text-xl font-semibold text-white mb-1 line-clamp-2 min-h-[3.5rem]">${vehicle.name}</h3>
+              <p class="text-gold-500 text-base md:text-sm mb-4 font-medium uppercase tracking-wider">${vehicle.type}</p>
               <p class="text-gray-400 text-sm mb-6 line-clamp-2">${vehicle.description}</p>
               
-              <div class="flex items-center justify-between text-gray-300 text-sm mb-6">
-                <div class="flex items-center gap-1">
-                  <i data-lucide="users" class="w-4 h-4"></i>
-                  <span>${vehicle.capacity}</span>
+              <div class="flex items-center justify-between text-gray-200 text-base mb-6">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                  <span class="text-lg font-semibold">${vehicle.capacity}</span>
                 </div>
-                <div class="flex items-center gap-1">
-                   <i data-lucide="briefcase" class="w-4 h-4"></i>
-                  <span>${vehicle.luggage}</span>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="briefcase" class="w-5 h-5"></i>
+                  <span class="text-lg font-semibold">${vehicle.luggage}</span>
                 </div>
               </div>
 
@@ -467,6 +536,7 @@
       function selectVehicle(type) {
         const select = document.getElementById('vehicle-select');
         select.value = type;
+        select.dispatchEvent(new Event('change'));
         scrollToSection('book');
       }
 
