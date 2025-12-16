@@ -21,8 +21,8 @@
     <meta name="twitter:image" content="./img/fb.jpg" />
 
     <meta name="theme-color" content="#000000" />
-    <link rel="icon" href="./img/icon/icon.png" />
-    <link rel="apple-touch-icon" href="./img/icon/icon.png" />
+    <link rel="icon" href="/img/icon/icon.png" />
+    <link rel="apple-touch-icon" href="/img/icon/icon.png" />
 
     <script type="application/ld+json">
       {
@@ -261,10 +261,7 @@
                 <label class="text-xs uppercase tracking-wider text-gray-500">Phone Number</label>
                 <input required type="tel" name="phone" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="+1 (801) 000-0000">
               </div>
-              <div class="space-y-1">
-                <label class="text-xs uppercase tracking-wider text-gray-500">Total Passengers</label>
-                <input required type="number" min="1" max="14" id="passengers-input" name="totalPassengers" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. 4">
-              </div>
+              <div class="space-y-1"></div>
               <div class="space-y-1">
                 <label class="text-xs uppercase tracking-wider text-gray-500 flex items-center gap-1">Vehicle Preference</label>
                 <select id="vehicle-select" required name="vehicleType" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors">
@@ -275,6 +272,10 @@
                   <option value="Mercedes-Benz Sprinter">Mercedes-Benz Sprinter</option>
                 </select>
                 <p id="passenger-hint" class="text-xs text-zinc-500 mt-2">Select a vehicle to see passenger limit.</p>
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs uppercase tracking-wider text-gray-500 flex items-center gap-1">Total Passengers</label>
+                <input required type="number" min="1" max="14" id="passengers-input" name="totalPassengers" class="w-full bg-black/50 border border-zinc-700 rounded p-3 text-white focus:border-gold-500 focus:outline-none transition-colors" placeholder="e.g. 4">
               </div>
             </div>
           </div>
